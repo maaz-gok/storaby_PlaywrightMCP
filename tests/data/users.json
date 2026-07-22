@@ -1,0 +1,14 @@
+{
+  "admin": {
+    "email": "admin@storaby.com",
+    "password": "Admin123!"
+  },
+  "wrongEmail": {
+    "email": "wrong@storaby.com",
+    "password": "WrongPass123!"
+  },
+  "wrongPassword": {
+    "email": "admin@storaby.com",
+    "password": "WrongPassword999!"
+  }
+}
