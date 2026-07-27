@@ -1,0 +1,19 @@
+{
+  "validName": "Updated Admin Name",
+  "spacedName": "  Spaced Name  ",
+  "trimmedName": "Spaced Name",
+  "longName": "A very long name that exceeds the maximum character limit of fifty characters in this field right here",
+  "specialCharsName": "@dm!n N@me!",
+  "weakPassword": "123",
+  "incorrectPassword": "WrongPassword999!",
+  "mismatchedConfirm": "DifferentMismatch1!",
+  "longPassword": "A1b#A1b#A1b#A1b#A1b#A1b#A1b#A1b#A1b#A1b#A1b#A1b#A1b#A1b#A1b#A1b#A1b#A1b#A1b#A1b#A1b#A1b#A1b#A1b#A1b#",
+  "spacesOnlyPassword": "     ",
+  "noUppercasePassword": "newadmin456!",
+  "noLowercasePassword": "NEWADMIN456!",
+  "noNumberPassword": "NewAdmin!",
+  "shortPassword": "Ab1!",
+  "leadingSpacePassword": "  NewAdmin456!  ",
+  "unsupportedImageType": "tests/data/test.svg",
+  "oversizedImage": "tests/data/test-large.png"
+}

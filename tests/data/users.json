@@ -1,7 +1,9 @@
 {
   "admin": {
     "email": "admin@storaby.com",
-    "password": "Admin123!"
+    "password": "NewAdmin456!",
+    "name": "updated admin name",
+    "newPassword": "Admin123!"
   },
   "wrongEmail": {
     "email": "wrong@storaby.com",

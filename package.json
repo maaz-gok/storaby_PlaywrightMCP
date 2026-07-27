@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "type": "module",
+  "scripts": {
+    "log-kanban-bug": "node scripts/log-kanban-bug.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

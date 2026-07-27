@@ -5,7 +5,7 @@ class DashboardPage extends BasePage {
   constructor(page) {
     super(page);
 
-    this.welcomeHeading = page.getByRole('heading', { name: 'Welcome storaby!' });
+    this.welcomeHeading = page.getByRole('heading', { name: /^Welcome / });
   }
 
   async goto() {
