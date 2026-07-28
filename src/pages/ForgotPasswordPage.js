@@ -1,7 +1,8 @@
-const { BasePage } = require('./BasePage');
-const { BASE_URL } = require('../utils/config');
+import { BasePage } from './BasePage';
+import { BASE_URL } from '../utils/config';
+import { LoginPage } from './LoginPage';
 
-class ForgotPasswordPage extends BasePage {
+export class ForgotPasswordPage extends BasePage {
   constructor(page) {
     super(page);
 
@@ -17,10 +18,7 @@ class ForgotPasswordPage extends BasePage {
   }
 
   async clickBackToSignIn() {
-    const { LoginPage } = require('./LoginPage');
     await this.backToSignInLink.click();
     return new LoginPage(this.page);
   }
 }
-
-module.exports = { ForgotPasswordPage };

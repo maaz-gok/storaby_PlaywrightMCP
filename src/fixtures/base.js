@@ -1,5 +1,5 @@
-const { test: base, expect } = require('@playwright/test');
+import { test as base, expect } from '@playwright/test';
 
-const test = base.extend({});
+export const test = base.extend({});
 
-module.exports = { test, expect };
+export { expect };

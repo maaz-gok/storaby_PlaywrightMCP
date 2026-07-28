@@ -3,8 +3,8 @@ import { LoginPage } from '../../../../src/pages/LoginPage';
 import { SettingsPage } from '../../../../src/pages/SettingsPage';
 import { DashboardPage } from '../../../../src/pages/DashboardPage';
 import { BASE_URL } from '../../../../src/utils/config';
-import users from '../../../data/users.json';
-import settings from '../../../data/settings.json';
+import users from '../../../data/users.json' with { type: 'json' };
+import settings from '../../../data/settings.json' with { type: 'json' };
 
 async function loginAndGoToSettings(page) {
   const login = new LoginPage(page);

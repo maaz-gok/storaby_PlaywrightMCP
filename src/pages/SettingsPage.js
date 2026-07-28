@@ -1,15 +1,13 @@
-const { BasePage } = require('./BasePage');
-const { BASE_URL } = require('../utils/config');
+import { BasePage } from './BasePage';
+import { BASE_URL } from '../utils/config';
 
-class SettingsPage extends BasePage {
+export class SettingsPage extends BasePage {
   constructor(page) {
     super(page);
 
-    // Tab buttons
     this.profileSettingsTab = page.getByRole('button', { name: 'Profile Settings' });
     this.changePasswordTab = page.getByRole('button', { name: 'Change Password' });
 
-    // Profile Settings
     this.profileImage = page.locator('img').nth(3);
     this.fullNameInput = page.getByLabel('Full Name');
     this.emailInput = page.getByLabel('Email');
@@ -17,19 +15,14 @@ class SettingsPage extends BasePage {
     this.changeProfilePhotoBtn = page.getByRole('button', { name: 'Change profile photo' });
     this.fileInput = page.locator('input[type="file"]');
 
-    // Change Password fields
     this.currentPasswordInput = page.getByLabel('Current Password');
     this.newPasswordInput = page.getByLabel('New Password', { exact: true });
     this.confirmPasswordInput = page.getByLabel('Confirm New Password');
 
-    // Password visibility toggles — CSS sibling selector used because all three
-    // toggles share the same aria-label ("Show password" / "Hide password") with
-    // no accessible way to differentiate them by role/name alone.
     this.currentPasswordToggle = page.locator('#currentPassword + button');
     this.newPasswordToggle = page.locator('#newPassword + button');
     this.confirmPasswordToggle = page.locator('#confirmPassword + button');
 
-    // Password requirement indicators — static UI copy
     this.req8Chars = page.getByText('8+ characters');
     this.reqNumber = page.getByText('Number');
     this.reqUppercase = page.getByText('Uppercase letter');
@@ -41,8 +34,6 @@ class SettingsPage extends BasePage {
     await this.waitForReady();
   }
 
-  // ---- Tab switching ----
-
   async openProfileSettings() {
     await this.profileSettingsTab.click();
   }
@@ -50,8 +41,6 @@ class SettingsPage extends BasePage {
   async openChangePassword() {
     await this.changePasswordTab.click();
   }
-
-  // ---- Profile settings actions ----
 
   async getFullName() {
     return this.fullNameInput.inputValue();
@@ -76,8 +65,6 @@ class SettingsPage extends BasePage {
   async uploadProfileImage(filePath) {
     await this.fileInput.setInputFiles(filePath);
   }
-
-  // ---- Change Password actions ----
 
   async fillCurrentPassword(password) {
     await this.currentPasswordInput.fill(password);
@@ -142,5 +129,3 @@ class SettingsPage extends BasePage {
     }
   }
 }
-
-module.exports = { SettingsPage };

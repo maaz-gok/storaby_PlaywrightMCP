@@ -1,7 +1,7 @@
 import { test, expect } from '../../src/fixtures/base';
 import { LoginPage } from '../../src/pages/LoginPage';
 import { BASE_URL } from '../../src/utils/config';
-import users from '../data/users.json';
+import users from '../data/users.json' with { type: 'json' };
 
 test.describe('Admin Login — successful authentication', () => {
   test('logs in with valid credentials and reaches the dashboard @smoke @critical', async ({ page }) => {

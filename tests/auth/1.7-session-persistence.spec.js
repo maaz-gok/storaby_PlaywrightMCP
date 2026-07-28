@@ -2,7 +2,7 @@ import { test, expect } from '../../src/fixtures/base';
 import { LoginPage } from '../../src/pages/LoginPage';
 import { DashboardPage } from '../../src/pages/DashboardPage';
 import { BASE_URL } from '../../src/utils/config';
-import users from '../data/users.json';
+import users from '../data/users.json' with { type: 'json' };
 
 test.describe('Admin Login — authenticated session persistence', () => {
   test('a fresh navigation to the dashboard keeps the session @regression', async ({ page }) => {

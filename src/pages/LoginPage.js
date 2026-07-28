@@ -1,7 +1,9 @@
-const { BasePage } = require('./BasePage');
-const { BASE_URL } = require('../utils/config');
+import { BasePage } from './BasePage';
+import { BASE_URL } from '../utils/config';
+import { DashboardPage } from './DashboardPage';
+import { ForgotPasswordPage } from './ForgotPasswordPage';
 
-class LoginPage extends BasePage {
+export class LoginPage extends BasePage {
   constructor(page) {
     super(page);
 
@@ -36,23 +38,13 @@ class LoginPage extends BasePage {
     await this.loginButton.click();
   }
 
-  /**
-   * Fills credentials and submits, without asserting the outcome.
-   * Use for scenarios where login is expected to fail and the page stays on /admin/login.
-   */
   async login(email, password) {
     await this.fillEmail(email);
     await this.fillPassword(password);
     await this.submit();
   }
 
-  /**
-   * Fills credentials, submits, and returns the next page.
-   * Use for scenarios where login is expected to succeed.
-   * @returns {Promise<import('./DashboardPage').DashboardPage>}
-   */
   async loginAs(email, password) {
-    const { DashboardPage } = require('./DashboardPage');
     await this.login(email, password);
     return new DashboardPage(this.page);
   }
@@ -62,10 +54,7 @@ class LoginPage extends BasePage {
   }
 
   async clickForgotPassword() {
-    const { ForgotPasswordPage } = require('./ForgotPasswordPage');
     await this.forgotPasswordLink.click();
     return new ForgotPasswordPage(this.page);
   }
 }
-
-module.exports = { LoginPage };

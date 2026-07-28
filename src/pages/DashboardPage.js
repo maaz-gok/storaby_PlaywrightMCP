@@ -1,7 +1,7 @@
-const { BasePage } = require('./BasePage');
-const { BASE_URL } = require('../utils/config');
+import { BasePage } from './BasePage';
+import { BASE_URL } from '../utils/config';
 
-class DashboardPage extends BasePage {
+export class DashboardPage extends BasePage {
   constructor(page) {
     super(page);
 
@@ -13,5 +13,3 @@ class DashboardPage extends BasePage {
     await this.waitForReady();
   }
 }
-
-module.exports = { DashboardPage };
