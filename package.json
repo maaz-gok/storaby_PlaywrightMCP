@@ -5,13 +5,18 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "log-kanban-bug": "node scripts/log-kanban-bug.js"
+    "log-kanban-bug": "node scripts/log-kanban-bug.js",
+    "report:generate": "allure generate ./allure-results --output allure-report",
+    "report:open": "allure open ./allure-report",
+    "report:serve": "allure open ./allure-results"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.61.1",
-    "@types/node": "^26.1.1"
+    "@types/node": "^26.1.1",
+    "allure": "^3.14.3",
+    "allure-playwright": "^3.10.2"
   }
 }

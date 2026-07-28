@@ -4,6 +4,16 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
   test:
     timeout-minutes: 60
@@ -25,3 +35,30 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+    - name: Generate Allure report
+      if: ${{ !cancelled() }}
+      run: |
+        npx allure generate ./allure-results --output allure-report
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: allure-report
+        path: allure-report/
+        retention-days: 30
+    - name: Upload Pages artifact
+      if: ${{ github.ref == 'refs/heads/main' && !cancelled() }}
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: allure-report
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: test
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
