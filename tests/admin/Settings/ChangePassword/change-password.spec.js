@@ -276,7 +276,7 @@ test.describe('Admin Settings — Change Password', () => {
 
       await settingsPage.dismissSuccessDialog();
 
-      const userMenuBtn = page.getByRole('button', { name: /admin@storaby\.com/ });
+      const userMenuBtn = page.getByRole('button', { name: users.admin.email, exact: false });
       await userMenuBtn.click();
       const logoutBtn = page.getByRole('menuitem', { name: 'Sign out' });
       await logoutBtn.click();

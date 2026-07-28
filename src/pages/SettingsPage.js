@@ -8,7 +8,7 @@ export class SettingsPage extends BasePage {
     this.profileSettingsTab = page.getByRole('button', { name: 'Profile Settings' });
     this.changePasswordTab = page.getByRole('button', { name: 'Change Password' });
 
-    this.profileImage = page.locator('img').nth(3);
+    this.profileImage = page.locator('img[src*="amazonaws.com"]').first();
     this.fullNameInput = page.getByLabel('Full Name');
     this.emailInput = page.getByLabel('Email');
     this.saveChangesBtn = page.getByRole('button', { name: 'Save Changes' });

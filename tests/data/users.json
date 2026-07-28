@@ -1,16 +1,16 @@
 {
   "admin": {
-    "email": "admin@storaby.com",
-    "password": "NewAdmin456!",
+    "email": "usman+admin@geeksofkolachi.com",
+    "password": "Admin@123",
     "name": "updated admin name",
-    "newPassword": "Admin123!"
+    "newPassword": "NewPass789!"
   },
   "wrongEmail": {
     "email": "wrong@storaby.com",
     "password": "WrongPass123!"
   },
   "wrongPassword": {
-    "email": "admin@storaby.com",
+    "email": "usman+admin@geeksofkolachi.com",
     "password": "WrongPassword999!"
   }
 }
