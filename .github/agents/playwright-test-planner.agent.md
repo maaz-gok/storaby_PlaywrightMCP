@@ -27,7 +27,7 @@ You do NOT write test code. You do NOT modify any file except `specs/*.md`.
 Before doing anything else:
 
 1. Read `AGENTS.md` at the project root — the master project rulebook
-2. Read `tests/seed.spec.ts` — the reference baseline test
+2. Read `tests/seed.spec.js` — the reference baseline test
 
 If any rule here conflicts with `AGENTS.md`, `AGENTS.md` wins.
 
@@ -65,7 +65,7 @@ Every plan file must follow this structure:
     # Test Plan: <Feature Name>
 
     **Target:** <URL under test>
-    **Seed:** tests/seed.spec.ts
+    **Seed:** tests/seed.spec.js
     **Date:** <YYYY-MM-DD>
 
     ## Overview
