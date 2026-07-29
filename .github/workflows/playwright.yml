@@ -52,7 +52,7 @@ jobs:
         path: allure-report
 
   deploy:
-    if: github.ref == 'refs/heads/main'
+    if: ${{ github.ref == 'refs/heads/main' && !cancelled() }}
     needs: test
     runs-on: ubuntu-latest
     environment:

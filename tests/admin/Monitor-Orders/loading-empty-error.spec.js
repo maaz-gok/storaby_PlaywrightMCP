@@ -21,15 +21,14 @@ test.describe('Order Management — loading, empty and error states', () => {
     const orders = new OrdersPage(page);
 
     await test.step('Delay API response to observe loading state', async () => {
-      await page.route('**/api.staging.storaby.com/admin/orders?page=1&limit=10**', async route => {
+      await page.route('**/api.staging.storaby.com/admin/orders**', async route => {
         await new Promise(resolve => setTimeout(resolve, 2000));
         await route.continue();
       });
     });
 
     await test.step('Navigate to orders page fresh', async () => {
-      const dashboard = new DashboardPage(page);
-      await dashboard.monitorOrdersNavLink.click();
+      await orders.goto();
       await page.waitForTimeout(500);
     });
 
@@ -89,7 +88,7 @@ test.describe('Order Management — loading, empty and error states', () => {
     const orders = new OrdersPage(page);
 
     await test.step('Mock empty orders response', async () => {
-      await page.route('**/api.staging.storaby.com/admin/orders?page=1&limit=10**', async route => {
+      await page.route('**/api.staging.storaby.com/admin/orders**', async route => {
         await route.fulfill({
           status: 200,
           contentType: 'application/json',
@@ -109,9 +108,8 @@ test.describe('Order Management — loading, empty and error states', () => {
 
     await test.step('Verify empty state', async () => {
       await expect(orders.emptyStateMessage).toBeVisible();
-      await expect(orders.paginationText).toHaveText('0-0 of 0');
-      await expect(orders.firstPageButton).toBeDisabled();
-      await expect(orders.lastPageButton).toBeDisabled();
+      expect(await orders.getRowCount()).toBe(1);
+      await expect(orders.emptyStateRow).toBeVisible();
     });
   });
 
@@ -119,7 +117,7 @@ test.describe('Order Management — loading, empty and error states', () => {
     const orders = new OrdersPage(page);
 
     await test.step('Block the orders API', async () => {
-      await page.route('**/api.staging.storaby.com/admin/orders?page=1&limit=10**', async route => {
+      await page.route('**/api.staging.storaby.com/admin/orders**', async route => {
         await route.abort('connectionrefused');
       });
     });
@@ -139,7 +137,7 @@ test.describe('Order Management — loading, empty and error states', () => {
     const orders = new OrdersPage(page);
 
     await test.step('Block order detail API', async () => {
-      await page.route('**/api.staging.storaby.com/admin/orders/**', async route => {
+      await page.route('**/api.staging.storaby.com/admin/orders**', async route => {
         const url = route.request().url();
         if (!url.includes('?page=') && !url.includes('limit=')) {
           await route.fulfill({

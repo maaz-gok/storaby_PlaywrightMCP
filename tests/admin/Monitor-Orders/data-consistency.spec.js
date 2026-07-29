@@ -44,9 +44,12 @@ test.describe('Order Management — API/UI data consistency', () => {
   }
 
   test('12.1 — Orders list API returns 200 @regression', async ({ page }) => {
-    const response = await page.waitForResponse(r =>
+    const orders = new OrdersPage(page);
+    const responsePromise = page.waitForResponse(r =>
       r.url().includes('/admin/orders') && r.url().includes('page=1') && r.url().includes('limit=10') && !r.url().includes('search=') && !r.url().includes('status=')
     );
+    await orders.goto();
+    const response = await responsePromise;
     expect(response.status()).toBe(200);
 
     const body = await response.json();
@@ -62,9 +65,11 @@ test.describe('Order Management — API/UI data consistency', () => {
     const orders = new OrdersPage(page);
 
     await test.step('Capture API response', async () => {
-      const response = await page.waitForResponse(r =>
+      const responsePromise = page.waitForResponse(r =>
         r.url().includes('/admin/orders') && r.url().includes('page=1') && r.url().includes('limit=10') && !r.url().includes('search=') && !r.url().includes('status=')
       );
+      await orders.goto();
+      const response = await responsePromise;
       const body = await response.json();
       const items = body.data.items;
 
@@ -76,7 +81,7 @@ test.describe('Order Management — API/UI data consistency', () => {
         const cells = await orders.getRowCells(i);
 
         expect(cells[0]).toBe(item.orderNumber);
-        const expectedCustomer = item.customer?.customerName || item.customer?.email || '';
+        const expectedCustomer = item.customerName || item.email || '';
         expect(cells[1]).toBe(expectedCustomer);
         expect(cells[2]).toBe(item.storyTitle || '—');
         expect(cells[3]).toBe(formatPrice(item.price));
@@ -131,7 +136,7 @@ test.describe('Order Management — API/UI data consistency', () => {
       expect(drawerStatusText).toBe(statusMap[item.status] || item.status);
 
       const customerNameText = await orders.drawerCustomerName.textContent();
-      expect(customerNameText).toBe(item.customer?.customerName || firstRow[1]);
+      expect(customerNameText).toBe(item.customerName || firstRow[1]);
 
       const storyText = await orders.drawerStoryTitle.textContent();
       expect(storyText).toBe(item.storyTitle);
@@ -140,7 +145,8 @@ test.describe('Order Management — API/UI data consistency', () => {
       expect(amountText).toBe(formatPrice(item.price));
 
       const paymentText = await orders.drawerPaymentStatus.textContent();
-      expect(paymentText).toBe(item.paymentStatus === 'PAID' ? 'Paid' : item.paymentStatus);
+      const expectedPayment = item.paymentStatus ? item.paymentStatus.charAt(0).toUpperCase() + item.paymentStatus.slice(1).toLowerCase() : '';
+      expect(paymentText).toBe(expectedPayment);
     });
   });
 

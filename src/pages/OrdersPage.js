@@ -39,7 +39,7 @@ export class OrdersPage extends BasePage {
     // Order detail drawer
     this.drawer = page.locator('[class*="storaby-drawer-panel"]');
     this.drawerBackdrop = page.locator('.fixed.inset-0.z-80').first();
-    this.drawerCloseButton = page.getByRole('button', { name: 'Close' });
+    this.drawerCloseButton = page.getByRole('button', { name: 'Close', exact: true });
     this.drawerOrderNumber = this.drawer.locator('h2').first();
     this.drawerStatusBadge = this.drawer.locator('header .inline-flex.items-center.gap-\\[3\\.75px\\]');
     this.drawerCustomerName = this.drawer.locator('section').first().locator('p.truncate.text-sm').first();
