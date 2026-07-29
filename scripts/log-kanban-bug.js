@@ -75,12 +75,39 @@ async function createTask(token, payload) {
   return JSON.parse(body);
 }
 
+function normalizeDescription(text) {
+  const normalized = text
+    .replace(/\\r\\n/g, '\n')
+    .replace(/\\n/g, '\n')
+    .replace(/\r\n/g, '\n')
+    .replace(/\r/g, '\n');
+
+  const sanitizedPaths = normalized
+    .replace(/(?:Resources|resources)\/[\w\-\.\/]+/g, 'a large file')
+    .replace(/\(e\.g\.\s*a large file\)/gi, '(e.g. a large file)')
+    .replace(/-\s*\d+(?:\.\d+)?MB/gi, '')
+    .replace(/https?:\/\/[\w\-\.\/]+/gi, 'the app');
+
+  const withHeadings = sanitizedPaths.replace(
+    /\*\*(Summary|Steps to Reproduce|Actual Result|Expected Result|Environment|Related Test):\*\*\s*/gi,
+    '**$1:**\n\n'
+  );
+
+  const withStepLines = withHeadings
+    .replace(/Steps to Reproduce:\n\n\s*(\d+)\./gi, 'Steps to Reproduce:\n\n$1.')
+    .replace(/\s+(\d+)\.\s+/g, '\n$1. ');
+
+  const compacted = withStepLines.replace(/\n{3,}/g, '\n\n').trim();
+
+  return compacted;
+}
+
 async function main() {
   log('Reading bug file:', bugFilePath);
   const raw = await readFile(bugFilePath, 'utf8');
   const [titleLine, ...rest] = raw.split('\n');
   const title = titleLine.replace(/^#\s*/, '').trim() || 'Kanban bug report';
-  const description = rest.join('\n').trim();
+  const description = normalizeDescription(rest.join('\n'));
 
   log('Logging in to Kanban API:', authUrl);
   const loginResult = await login();

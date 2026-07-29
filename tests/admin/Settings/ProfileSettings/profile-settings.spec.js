@@ -82,7 +82,25 @@ test.describe('Admin Settings — Profile Settings', () => {
     await expect(successMsg).toBeVisible({ timeout: 10000 });
   });
 
-  test('1.8 — Leading/trailing spaces in Full Name @regression', async ({ page }) => {
+  test('1.8 — Full Name preserves case after save @regression', async ({ page }) => {
+    await loginAndGoToSettings(page);
+    const settingsPage = new SettingsPage(page);
+    await settingsPage.goto();
+
+    const caseName = 'Administrator';
+    await settingsPage.fillFullName(caseName);
+    await expect(settingsPage.saveChangesBtn).toBeEnabled();
+    await settingsPage.saveProfile();
+
+    const successMsg = await settingsPage.getSuccessMessage();
+    await expect(successMsg).toBeVisible({ timeout: 10000 });
+
+    await settingsPage.goto();
+    const savedName = await settingsPage.getFullName();
+    expect(savedName).toBe(caseName);
+  });
+
+  test('1.9 — Leading/trailing spaces in Full Name @regression', async ({ page }) => {
     await loginAndGoToSettings(page);
     const settingsPage = new SettingsPage(page);
     await settingsPage.goto();
@@ -99,7 +117,7 @@ test.describe('Admin Settings — Profile Settings', () => {
     }
   });
 
-  test('1.9 — Clear Full Name and verify validation @regression', async ({ page }) => {
+  test('1.10 — Clear Full Name and verify validation @regression', async ({ page }) => {
     await loginAndGoToSettings(page);
     const settingsPage = new SettingsPage(page);
     await settingsPage.goto();
@@ -112,7 +130,7 @@ test.describe('Admin Settings — Profile Settings', () => {
     }
   });
 
-  test('1.10 — Very long Full Name @regression', async ({ page }) => {
+  test('1.11 — Very long Full Name @regression', async ({ page }) => {
     await loginAndGoToSettings(page);
     const settingsPage = new SettingsPage(page);
     await settingsPage.goto();
@@ -122,7 +140,7 @@ test.describe('Admin Settings — Profile Settings', () => {
     expect(currentValue.length).toBeLessThanOrEqual(50);
   });
 
-  test('1.11 — Special characters and numbers in Full Name @regression', async ({ page }) => {
+  test('1.12 — Special characters and numbers in Full Name @regression', async ({ page }) => {
     await loginAndGoToSettings(page);
     const settingsPage = new SettingsPage(page);
     await settingsPage.goto();
@@ -139,7 +157,7 @@ test.describe('Admin Settings — Profile Settings', () => {
     }
   });
 
-  test('1.12 — Email field is not editable @regression', async ({ page }) => {
+  test('1.13 — Email field is not editable @regression', async ({ page }) => {
     await loginAndGoToSettings(page);
     const settingsPage = new SettingsPage(page);
     await settingsPage.goto();
@@ -147,7 +165,7 @@ test.describe('Admin Settings — Profile Settings', () => {
     await expect(settingsPage.emailInput).toBeDisabled();
   });
 
-  test('1.13 — Rapidly click Save Changes multiple times @regression', async ({ page }) => {
+  test('1.14 — Rapidly click Save Changes multiple times @regression', async ({ page }) => {
     await loginAndGoToSettings(page);
     const settingsPage = new SettingsPage(page);
     await settingsPage.goto();
@@ -166,7 +184,7 @@ test.describe('Admin Settings — Profile Settings', () => {
     expect(requests.length).toBeLessThanOrEqual(2);
   });
 
-  test('1.14 — Refresh page and verify saved values persist @critical @smoke', async ({ page }) => {
+  test('1.15 — Refresh page and verify saved values persist @critical @smoke', async ({ page }) => {
     await loginAndGoToSettings(page);
     const settingsPage = new SettingsPage(page);
     await settingsPage.goto();
