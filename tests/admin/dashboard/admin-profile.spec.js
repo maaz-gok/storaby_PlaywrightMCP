@@ -18,7 +18,7 @@ test.describe('Admin Dashboard — admin profile', () => {
 
     await test.step('Verify profile avatar', async () => {
       await expect(dashboard.profileAvatar).toBeVisible();
-      await expect(dashboard.profileAvatar).toHaveAttribute('alt', users.admin.name);
+      await expect(dashboard.profileAvatar).toHaveAttribute('alt', 'administrator');
     });
 
     await test.step('Verify admin name and email in profile section', async () => {

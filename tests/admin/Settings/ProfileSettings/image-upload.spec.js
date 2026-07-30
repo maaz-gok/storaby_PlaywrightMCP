@@ -1,7 +1,7 @@
 import { test, expect } from '../../../../src/fixtures/base';
 import { LoginPage } from '../../../../src/pages/LoginPage';
+import { DashboardPage } from '../../../../src/pages/DashboardPage';
 import { SettingsPage } from '../../../../src/pages/SettingsPage';
-import { BASE_URL } from '../../../../src/utils/config';
 import users from '../../../data/users.json' with { type: 'json' };
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -11,10 +11,10 @@ const resourcesDir = path.resolve(__dirname, '../../../../Resources');
 
 async function loginAndGoToSettings(page) {
   const login = new LoginPage(page);
+  const dashboard = new DashboardPage(page);
   await login.goto();
   await login.login(users.admin.email, users.admin.password);
-  await page.waitForURL('**/admin/dashboard', { timeout: 30000 });
-  await page.waitForLoadState('networkidle');
+  await expect(dashboard.welcomeHeading).toBeVisible({ timeout: 30000 });
   const settings = new SettingsPage(page);
   await settings.goto();
   return settings;
