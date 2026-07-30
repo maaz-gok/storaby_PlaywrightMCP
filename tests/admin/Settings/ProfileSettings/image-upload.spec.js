@@ -14,7 +14,7 @@ async function loginAndGoToSettings(page) {
   const login = new LoginPage(page);
   await login.goto();
   await login.login(users.admin.email, users.admin.password);
-  await page.waitForURL('**/admin/dashboard', { timeout: 60000 });
+  await expect(page).toHaveURL(/\/admin\/dashboard/, { timeout: 60000 });
   await page.waitForLoadState('networkidle');
   const settings = new SettingsPage(page);
   await settings.goto();

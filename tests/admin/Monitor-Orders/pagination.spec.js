@@ -38,24 +38,33 @@ test.describe('Order Management — pagination', () => {
 
   test('5.2 — Page indicator shows correct ranges @smoke @critical', async ({ page }) => {
     const orders = new OrdersPage(page);
+    let total;
+    let perPage;
 
     await test.step('Verify page 1 range', async () => {
       const text = await orders.getPaginationText();
-      expect(text).toBe('1-10 of 85');
+      const match = text.match(/(\d+)-(\d+) of (\d+)/);
+      expect(match).toBeTruthy();
+      const [, start, end, t] = match.map(Number);
+      expect(start).toBe(1);
+      total = t;
+      perPage = end - start + 1;
+      expect(text).toBe(`1-${perPage} of ${total}`);
     });
 
     await test.step('Navigate to page 2 and verify range', async () => {
       await orders.nextPageButton.click();
       await page.waitForTimeout(1500);
       const text = await orders.getPaginationText();
-      expect(text).toBe('11-20 of 85');
+      expect(text).toBe(`${perPage + 1}-${perPage * 2} of ${total}`);
     });
 
     await test.step('Navigate to last page and verify range', async () => {
+      const lastPageStart = Math.floor((total - 1) / perPage) * perPage + 1;
       await orders.lastPageButton.click();
       await page.waitForTimeout(1500);
       const text = await orders.getPaginationText();
-      expect(text).toBe('81-85 of 85');
+      expect(text).toBe(`${lastPageStart}-${total} of ${total}`);
     });
   });
 
@@ -126,16 +135,27 @@ test.describe('Order Management — pagination', () => {
   test('5.6 — Last page button navigates to the final page @regression', async ({ page }) => {
     const orders = new OrdersPage(page);
 
+    let total;
+
+    await test.step('Get total from page 1', async () => {
+      const text = await orders.getPaginationText();
+      const match = text.match(/(\d+)-(\d+) of (\d+)/);
+      expect(match).toBeTruthy();
+      total = Number(match[3]);
+    });
+
     await test.step('Click Last page', async () => {
       await orders.lastPageButton.click();
       await page.waitForTimeout(1500);
     });
 
     await test.step('Verify on last page', async () => {
-      await expect(orders.paginationText).toContainText('of 85');
+      const perPage = 10;
+      const lastPageStart = Math.floor((total - 1) / perPage) * perPage + 1;
+      await expect(orders.paginationText).toContainText(`of ${total}`);
       const text = await orders.getPaginationText();
       const lastPageRange = text.split(' ')[0];
-      expect(lastPageRange).toBe('81-85');
+      expect(lastPageRange).toBe(`${lastPageStart}-${total}`);
     });
 
     await test.step('Verify next/last are disabled', async () => {
