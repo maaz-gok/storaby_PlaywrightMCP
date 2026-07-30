@@ -99,10 +99,10 @@ In CI (`.github/workflows/playwright.yml`), tests run on every push/PR to `main`
 Bugs found during testing are written as Markdown files under `Bugs/<feature>/` (see `Bugs/Template.md`). They can be filed automatically as Kanban tasks:
 
 ```bash
-node scripts/log-kanban-bug.js Bugs/admin-settings/change-password-current-new-password-same.md
+KANBAN_EMAIL=you@example.com KANBAN_PASSWORD=your-password node scripts/log-kanban-bug.js Bugs/admin-settings/change-password-current-new-password-same.md
 ```
 
-This logs into the Kanban API and creates a task from the bug file's title/description. Configure `KANBAN_BASE_URL`, `KANBAN_EMAIL`, `KANBAN_PASSWORD`, and `KANBAN_PROJECT_ID` via environment variables to override the defaults baked into the script.
+This logs into the Kanban API and creates a task from the bug file's title/description. `KANBAN_EMAIL` and `KANBAN_PASSWORD` are **required** environment variables (the script throws if they're missing — no credentials are hardcoded). `KANBAN_BASE_URL` optionally overrides the API host; `KANBAN_PROJECT_ID` optionally pins a project (otherwise the first project returned by the API is used).
 
 ## Manual test cases
 

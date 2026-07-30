@@ -1,10 +1,17 @@
 import { readFile } from 'fs/promises';
 
 const apiBase = process.env.KANBAN_BASE_URL || 'https://pm-gok-release.onrender.com';
-const loginEmail = process.env.KANBAN_EMAIL || 'maaz@geeksofkolachi.com';
-const loginPassword = process.env.KANBAN_PASSWORD || 'QA_Maaz00';
-const projectId = process.env.KANBAN_PROJECT_ID || '6a3008253464d5f7a9df14a8';
-const bugFilePath = process.argv[2] || 'Bugs/admin-settings/change-password-current-new-password-same.md';
+const loginEmail = process.env.KANBAN_EMAIL;
+const loginPassword = process.env.KANBAN_PASSWORD;
+const projectId = process.env.KANBAN_PROJECT_ID;
+const bugFilePath = process.argv[2];
+
+if (!loginEmail || !loginPassword) {
+  throw new Error('KANBAN_EMAIL and KANBAN_PASSWORD environment variables are required.');
+}
+if (!bugFilePath) {
+  throw new Error('Usage: node scripts/log-kanban-bug.js <path-to-bug-file>');
+}
 
 const authUrl = `${apiBase}/auth/login`;
 const projectsUrl = `${apiBase}/api/projects/my-projects`;
