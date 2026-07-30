@@ -1,0 +1,34 @@
+Headers: [
+  'Order Number',
+  'Customer',
+  'Story',
+  'Transaction',
+  'Transaction Date',
+  'Order Status',
+  'Action'
+]
+Column count: 7
+All buttons on page: 20
+  Button 0: text="", aria-label="Collapse sidebar", disabled=false
+  Button 2: text="adminusman+admin@geeksofkolachi.com", aria-label="null", disabled=false
+  Button 3: text="Statuses", aria-label="Statuses", disabled=false
+  Button 4: text="", aria-label="View order ST-8RCA", disabled=false
+  Button 5: text="", aria-label="View order ST-RQYD", disabled=false
+  Button 6: text="", aria-label="View order ST-RLDE", disabled=false
+  Button 7: text="", aria-label="View order ST-WRPQ", disabled=false
+  Button 8: text="", aria-label="View order ST-UBWD", disabled=false
+  Button 9: text="", aria-label="View order ST-MF03", disabled=false
+  Button 10: text="", aria-label="View order ST-NLKB", disabled=false
+  Button 11: text="", aria-label="View order ST-5773", disabled=false
+  Button 12: text="", aria-label="View order ST-2NUV", disabled=false
+  Button 13: text="", aria-label="View order ST-RYKB", disabled=false
+  Button 14: text="", aria-label="First page", disabled=true
+  Button 15: text="", aria-label="Previous page", disabled=true
+  Button 16: text="", aria-label="Next page", disabled=false
+  Button 17: text="", aria-label="Last page", disabled=false
+All links on page: 6
+  Link 0: text="Dashboard", href="/admin/dashboard"
+  Link 1: text="Monitor Orders", href="/admin/orders"
+  Link 2: text="Templates", href="/admin/templates"
+Bottom element 0: DashboardMonitor OrdersTemplatesOrder Managementadminusman+admin@geeksofkolachi.comOrder ManagementStatusesOrder NumberCustomerStoryTransactionTransaction DateOrder StatusActionST-8RCAAlexThe Glowing Envelope£29.9929 Jul 2026Generating FinalST-RQYDusmanThe Glowing Gold Envelope£29.9929 Jul 2026Submitted To PrintST-RLDEusmanThe Glowing Gift£29.9929 Jul 2026PrintingST-WRPQJohn DoeCardboard Wings£29.9929 Jul 2026PrintingST-UBWDUsmanThe Whispering Gate£29.9929 Jul 2026PrintingST-MF03Usman AzharThe Tiny Door£29.9929 Jul 2026PrintingST-NLKBusmanZookeeper Osman£29.9929 Jul 2026PrintingST-5773usmanBrand New Backpack£29.9929 Jul 2026PrintingST-2NUVusmanThe Tiny Door£29.9929 Jul 2026PrintingST-RYKBUsmanThe Tiny Door£29.9929 Jul 2026Printing1-10 of 85DashboardMonitor OrdersTemplates
+Bottom element 1: 0%

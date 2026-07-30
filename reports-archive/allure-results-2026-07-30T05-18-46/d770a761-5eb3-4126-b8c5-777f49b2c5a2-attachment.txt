@@ -1,0 +1,6 @@
+Requests during typing:
+  https://api.staging.storaby.com/admin/orders?page=1&limit=10&search=ST-8
+Requests after clear:
+  https://api.staging.storaby.com/admin/orders?page=1&limit=10
+Requests for special chars: 1
+Requests for numbers: 1

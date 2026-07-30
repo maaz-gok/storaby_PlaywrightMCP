@@ -1,0 +1,54 @@
+Page structure analysis: [
+  {
+    "text": "1-10 of 85",
+    "selector": "P",
+    "class": "text-sm text-storaby-secondary max-sm:text-center"
+  },
+  {
+    "type": "nav",
+    "buttons": [
+      {
+        "text": "Dashboard",
+        "disabled": null,
+        "class": "flex h-[50px] items-center gap-3.5 rounded-[10px] px-3 text-sm transition-colors text-storaby-gray hover:bg-storaby-cream hover:text-storaby-secondary"
+      },
+      {
+        "text": "Monitor Orders",
+        "disabled": null,
+        "class": "flex h-[50px] items-center gap-3.5 rounded-[10px] px-3 text-sm transition-colors bg-storaby-primary font-medium text-white"
+      },
+      {
+        "text": "Templates",
+        "disabled": null,
+        "class": "flex h-[50px] items-center gap-3.5 rounded-[10px] px-3 text-sm transition-colors text-storaby-gray hover:bg-storaby-cream hover:text-storaby-secondary"
+      }
+    ]
+  },
+  {
+    "type": "nav",
+    "buttons": [
+      {
+        "text": "Dashboard",
+        "disabled": null,
+        "class": "flex h-[50px] items-center gap-3.5 rounded-[10px] px-3 text-sm transition-colors text-storaby-gray hover:bg-storaby-cream hover:text-storaby-secondary"
+      },
+      {
+        "text": "Monitor Orders",
+        "disabled": null,
+        "class": "flex h-[50px] items-center gap-3.5 rounded-[10px] px-3 text-sm transition-colors bg-storaby-primary font-medium text-white"
+      },
+      {
+        "text": "Templates",
+        "disabled": null,
+        "class": "flex h-[50px] items-center gap-3.5 rounded-[10px] px-3 text-sm transition-colors text-storaby-gray hover:bg-storaby-cream hover:text-storaby-secondary"
+      }
+    ]
+  }
+]
+Pagination texts: [ '1-10 of 85' ]
+Pagination class elements: 0
+Flex container count: 3
+Flex 0: [ '' ]
+Flex 1: [ 'Order Managementadminusman+admin@geeksofkolachi.com' ]
+Flex 2: [ '' ]
+"of N" texts: [ '1-10 of 85' ]

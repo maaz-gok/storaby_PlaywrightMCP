@@ -1,0 +1,43 @@
+Initial rows: 10
+After Pending filter, rows: 8
+After All filter, rows: 10
+Status "Paid" rows: 1
+  First row: [ 'No orders found.' ]
+Status "Generating Final" rows: 10
+  First row: [
+  'ST-8RCA',
+  'Alex',
+  'The Glowing Envelope',
+  '£29.99',
+  '29 Jul 2026',
+  'Generating Final',
+  ''
+]
+Status "Submitted To Print" rows: 10
+  First row: [
+  'ST-ANSM',
+  "Finn's Parent",
+  'Hero Up!',
+  '£29.99',
+  '28 Jul 2026',
+  'Submitted To Print',
+  ''
+]
+Status "Printing" rows: 10
+  First row: [
+  'ST-RQYD',
+  'usman',
+  'The Glowing Gold Envelope',
+  '£29.99',
+  '29 Jul 2026',
+  'Printing',
+  ''
+]
+Status "Shipped" rows: 1
+  First row: [ 'No orders found.' ]
+Status "Delivered" rows: 1
+  First row: [ 'No orders found.' ]
+Status "Cancelled" rows: 1
+  First row: [ 'No orders found.' ]
+Status "Generation Failed" rows: 1
+  First row: [ 'No orders found.' ]

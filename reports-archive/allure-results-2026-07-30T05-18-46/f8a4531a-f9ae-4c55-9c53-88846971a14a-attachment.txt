@@ -1,0 +1,1 @@
+URL after click: https://staging.storaby.com/admin/orders

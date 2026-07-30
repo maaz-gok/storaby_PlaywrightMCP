@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "log-kanban-bug": "node scripts/log-kanban-bug.js",
+    "archive-reports": "node scripts/archive-reports.js",
+    "test": "node scripts/archive-reports.js && npx playwright test",
     "report:generate": "allure generate ./allure-results --output allure-report",
     "report:open": "allure open ./allure-report",
     "report:serve": "allure open ./allure-results"

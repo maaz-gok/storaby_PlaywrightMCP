@@ -1,0 +1,2 @@
+Rows after search "ST-": 10
+Rows after clearing search: 10

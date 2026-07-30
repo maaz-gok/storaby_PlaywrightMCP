@@ -1,0 +1,17 @@
+Change photo button visible: true
+File input visible: true
+File input count: 1
+=== Visible text after 45s ===
+  > Dashboard
+  > Monitor Orders
+  > Templates
+  > Profile Settings
+  > admin
+  > usman+admin@geeksofkolachi.com
+  > Profile Settings
+  > Change Password
+  > Profile Settings
+  > Full Name
+  > Email
+  > Save Changes
+Screenshot saved

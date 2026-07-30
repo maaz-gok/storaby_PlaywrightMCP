@@ -1,0 +1,4 @@
+Rows with no results: 1
+First row text: [ 'No orders found.' ]
+Row HTML: <td colspan="7" class="px-4 py-10 text-center whitespace-nowrap"><p class="text-xs sm:text-sm font-normal text-storaby-gray">No orders found.</p></td>
+Pagination: 0-0 of 0

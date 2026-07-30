@@ -152,8 +152,24 @@ test.describe('Admin Dashboard — API/UI data consistency', () => {
 
     const total = Object.values(dayCounts).reduce((a, b) => a + b, 0);
     const expectedPcts = {};
-    for (const [day, count] of Object.entries(dayCounts)) {
-      expectedPcts[day] = total > 0 ? Math.round((count / total) * 100) : 0;
+    if (total > 0) {
+      const rawPcts = {};
+      for (const [day, count] of Object.entries(dayCounts)) {
+        rawPcts[day] = (count / total) * 100;
+      }
+      for (const [day, pct] of Object.entries(rawPcts)) {
+        expectedPcts[day] = Math.floor(pct);
+      }
+      const flooredSum = Object.values(expectedPcts).reduce((a, b) => a + b, 0);
+      let remainder = 100 - flooredSum;
+      const sortedDays = Object.entries(rawPcts)
+        .sort((a, b) => (b[1] - Math.floor(b[1])) - (a[1] - Math.floor(a[1])))
+        .map(([day]) => day);
+      for (let i = 0; i < remainder; i++) {
+        expectedPcts[sortedDays[i]]++;
+      }
+    } else {
+      dayLabels.forEach(d => expectedPcts[d] = 0);
     }
 
     const totalPct = Object.values(expectedPcts).reduce((a, b) => a + b, 0);

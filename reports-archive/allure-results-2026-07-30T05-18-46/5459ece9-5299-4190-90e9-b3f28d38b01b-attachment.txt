@@ -1,0 +1,4 @@
+API requests for first order:
+  https://api.staging.storaby.com/admin/orders/6a6a20e97c6021c867ab21f6
+API requests for second order:
+  https://api.staging.storaby.com/admin/orders/6a6a1de47c6021c867ab1244

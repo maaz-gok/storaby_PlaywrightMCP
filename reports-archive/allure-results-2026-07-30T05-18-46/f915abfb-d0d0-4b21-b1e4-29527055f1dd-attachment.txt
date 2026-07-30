@@ -1,0 +1,3 @@
+Change photo button visible: true
+File input visible: true
+File input count: 1

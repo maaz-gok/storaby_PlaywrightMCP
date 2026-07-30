@@ -1,0 +1,86 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: admin/Monitor-Orders/orders-table.spec.ts >> Order Management — orders table >> 2.3 — Table row status badges render with correct styling @smoke @regression
+- Location: tests/admin/Monitor-Orders/orders-table.spec.ts:53:3
+
+# Error details
+
+```
+Error: page.goto: net::ERR_NAME_NOT_RESOLVED at https://staging.storaby.com/admin/login
+Call log:
+  - navigating to "https://staging.storaby.com/admin/login", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1  | import { BasePage } from './BasePage';
+  2  | import { BASE_URL } from '../utils/config';
+  3  | import { DashboardPage } from './DashboardPage';
+  4  | import { ForgotPasswordPage } from './ForgotPasswordPage';
+  5  | 
+  6  | export class LoginPage extends BasePage {
+  7  |   constructor(page) {
+  8  |     super(page);
+  9  | 
+  10 |     this.heading = page.getByRole('heading', { name: 'Admin Login' });
+  11 |     this.emailInput = page.getByLabel('Email', { exact: true });
+  12 |     this.passwordInput = page.getByRole('textbox', { name: 'Password', exact: true });
+  13 |     this.passwordToggleButton = page.getByRole('button', { name: /show password|hide password/i });
+  14 |     this.keepSignedInCheckbox = page.getByRole('checkbox', { name: 'Keep me signed in' });
+  15 |     this.forgotPasswordLink = page.getByRole('link', { name: 'Forgot Password?' });
+  16 |     this.loginButton = page.getByRole('button', { name: 'Login', exact: true });
+  17 |     this.statusMessage = page.getByRole('status');
+  18 | 
+  19 |     this.emailRequiredError = page.getByText('Email is required', { exact: true });
+  20 |     this.emailInvalidError = page.getByText('Enter a valid email', { exact: true });
+  21 |     this.passwordRequiredError = page.getByText('Password is required', { exact: true });
+  22 |   }
+  23 | 
+  24 |   async goto() {
+> 25 |     await this.page.goto(`${BASE_URL}/admin/login`);
+     |                     ^ Error: page.goto: net::ERR_NAME_NOT_RESOLVED at https://staging.storaby.com/admin/login
+  26 |     await this.waitForReady();
+  27 |   }
+  28 | 
+  29 |   async fillEmail(email) {
+  30 |     await this.emailInput.fill(email);
+  31 |   }
+  32 | 
+  33 |   async fillPassword(password) {
+  34 |     await this.passwordInput.fill(password);
+  35 |   }
+  36 | 
+  37 |   async submit() {
+  38 |     await this.loginButton.click();
+  39 |   }
+  40 | 
+  41 |   async login(email, password) {
+  42 |     await this.fillEmail(email);
+  43 |     await this.fillPassword(password);
+  44 |     await this.submit();
+  45 |   }
+  46 | 
+  47 |   async loginAs(email, password) {
+  48 |     await this.login(email, password);
+  49 |     return new DashboardPage(this.page);
+  50 |   }
+  51 | 
+  52 |   async togglePasswordVisibility() {
+  53 |     await this.passwordToggleButton.click();
+  54 |   }
+  55 | 
+  56 |   async clickForgotPassword() {
+  57 |     await this.forgotPasswordLink.click();
+  58 |     return new ForgotPasswordPage(this.page);
+  59 |   }
+  60 | }
+  61 | 
+```

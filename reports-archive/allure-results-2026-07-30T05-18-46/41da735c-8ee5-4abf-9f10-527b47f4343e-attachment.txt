@@ -1,0 +1,21 @@
+Change photo button visible: true
+File input visible: true
+File input count: 1
+Clicking Save...
+Button text changed to: Save Changes
+=== Visible text ===
+  > Dashboard
+  > Monitor Orders
+  > Templates
+  > Profile Settings
+  > admin
+  > usman+admin@geeksofkolachi.com
+  > Profile Settings
+  > Change Password
+  > Profile Settings
+  > Full Name
+  > Email
+  > Save Changes
+  > Something went wrong
+  > Something went wrong
+Screenshot saved

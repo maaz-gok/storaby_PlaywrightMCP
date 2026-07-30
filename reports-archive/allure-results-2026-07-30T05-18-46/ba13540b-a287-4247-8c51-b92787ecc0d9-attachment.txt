@@ -1,0 +1,14 @@
+Initial pagination: 1-10 of 85
+Next disabled: false
+Prev disabled: true
+After next, pagination: 11-20 of 85
+Rows on page 2: 10
+After next 2, pagination: 21-30 of 85
+Prev disabled: false
+After last, pagination: 81-85 of 85
+Next disabled: true
+Last disabled: true
+After first, pagination: 1-10 of 85
+Prev disabled: true
+First disabled: true
+After next+prev, pagination: 1-10 of 85

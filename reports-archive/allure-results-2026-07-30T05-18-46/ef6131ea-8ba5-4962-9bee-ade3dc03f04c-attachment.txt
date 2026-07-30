@@ -1,0 +1,59 @@
+Initial rows: 5
+After "ST-" search rows: 10
+  Row 0: [
+  'ST-8RCA',
+  'Alex',
+  'The Glowing Envelope',
+  '£29.99',
+  '29 Jul 2026',
+  'Generating Final',
+  ''
+]
+  Row 1: [
+  'ST-RQYD',
+  'usman',
+  'The Glowing Gold Envelope',
+  '£29.99',
+  '29 Jul 2026',
+  'Submitted To Print',
+  ''
+]
+  Row 2: [
+  'ST-RLDE',
+  'usman',
+  'The Glowing Gift',
+  '£29.99',
+  '29 Jul 2026',
+  'Printing',
+  ''
+]
+After clear, rows: 10
+After spaces search, rows: 10
+After "usman" search rows: 10
+  Row 0: [
+  'ST-8RCA',
+  'Alex',
+  'The Glowing Envelope',
+  '£29.99',
+  '29 Jul 2026',
+  'Generating Final',
+  ''
+]
+  Row 1: [
+  'ST-RQYD',
+  'usman',
+  'The Glowing Gold Envelope',
+  '£29.99',
+  '29 Jul 2026',
+  'Submitted To Print',
+  ''
+]
+  Row 2: [
+  'ST-RLDE',
+  'usman',
+  'The Glowing Gift',
+  '£29.99',
+  '29 Jul 2026',
+  'Printing',
+  ''
+]

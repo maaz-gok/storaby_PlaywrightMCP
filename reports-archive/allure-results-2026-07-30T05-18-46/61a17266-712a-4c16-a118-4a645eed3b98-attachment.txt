@@ -1,0 +1,10 @@
+URL: https://staging.storaby.com/admin/orders
+Title: Storaby — Personalised Storybooks for Children
+Sidebar links: [
+  'Dashboard',
+  'Monitor Orders',
+  'Templates',
+  'Dashboard',
+  'Monitor Orders',
+  'Templates'
+]

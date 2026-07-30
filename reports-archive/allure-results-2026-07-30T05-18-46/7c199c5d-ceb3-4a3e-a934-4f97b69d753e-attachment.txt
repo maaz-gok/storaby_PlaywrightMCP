@@ -1,0 +1,5 @@
+Backdrop visible: true
+Drawer visible after backdrop click: false
+Drawer visible after Escape: true
+URL after second order click: https://staging.storaby.com/admin/orders
+Second order drawer contains ST-RQYD: true

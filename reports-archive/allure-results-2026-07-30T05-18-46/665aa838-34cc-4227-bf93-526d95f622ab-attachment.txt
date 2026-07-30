@@ -1,0 +1,7 @@
+After Pending filter, rows: 8
+After back, URL: https://staging.storaby.com/admin/dashboard
+After back, rows: 10
+After forward, URL: https://staging.storaby.com/admin/orders
+After forward, rows: 10
+After refresh, URL: https://staging.storaby.com/admin/orders
+After refresh, rows: 10

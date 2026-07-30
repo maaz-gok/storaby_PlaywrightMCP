@@ -1,0 +1,22 @@
+Change photo button visible: true
+File input visible: true
+File input count: 1
+=== Form HTML (first 3000 chars) ===
+<h2 class="mb-5 text-lg font-semibold text-storaby-secondary">Profile Settings</h2><div class="mb-6 flex justify-start"><div class="relative"><img alt="admin" class="size-[100px] rounded-full border-4 border-storaby-primary/20 object-cover" src="blob:https://staging.storaby.com/e57b590b-4162-4a6d-a030-65c1254b169b"><input accept="image/*" class="sr-only" type="file"><button type="button" aria-label="Change profile photo" class="absolute right-0 bottom-0 flex size-7 items-center justify-center rounded-full bg-storaby-primary text-white shadow disabled:opacity-60"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-camera" aria-hidden="true"><path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z"></path><circle cx="12" cy="13" r="3"></circle></svg></button></div></div><div class="flex flex-col gap-5"><div class="w-full space-y-2"><label class="text-xs font-medium sm:text-sm capitalize text-storaby-black" for="name">Full Name</label><div class="relative"><input id="name" placeholder="Enter full name" aria-invalid="false" class="mt-1 h-[49px] w-full rounded-full border border-[rgba(234,122,30,0.3)] bg-white px-4 text-xs text-storaby-secondary outline-none transition-colors placeholder:text-storaby-gray focus:border-storaby-primary" maxlength="50" type="text" value="admin" name="name"></div></div><div class="w-full space-y-2"><label class="text-xs font-medium sm:text-sm capitalize text-storaby-black" for="email">Email</label><div class="relative"><input id="email" placeholder="admin@storaby.com" aria-invalid="false" class="mt-1 h-[49px] w-full rounded-full border border-[rgba(234,122,30,0.3)] bg-white px-4 text-xs text-storaby-secondary outline-none transition-colors placeholder:text-storaby-gray focus:border-storaby-primary" disabled="" maxlength="254" type="email" value="usman+admin@geeksofkolachi.com" name="email"></div></div></div><div class="mt-8 flex justify-end"><button type="submit" class="inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-full py-3 text-sm font-medium transition-opacity disabled:cursor-not-allowed disabled:opacity-60 bg-storaby-primary text-white shadow-[inset_0px_3px_4px_0px_#DFEEFF4D,inset_0px_1px_1px_0px_#FFFFFF59,inset_0px_-2px_1px_0px_#00428912,0px_1px_2px_0px_#4A3AFF26] min-w-[170px] px-6">Save Changes</button></div>
+Save button disabled: false
+Save button text: Save Changes
+Clicking Save...
+=== Visible text after 5s ===
+  > Dashboard
+  > Monitor Orders
+  > Templates
+  > Profile Settings
+  > admin
+  > usman+admin@geeksofkolachi.com
+  > Profile Settings
+  > Change Password
+  > Profile Settings
+  > Full Name
+  > Email
+  > Saving...
+Screenshot saved

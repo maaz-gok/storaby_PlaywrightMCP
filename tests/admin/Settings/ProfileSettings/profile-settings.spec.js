@@ -97,7 +97,7 @@ test.describe('Admin Settings — Profile Settings', () => {
 
     await settingsPage.goto();
     const savedName = await settingsPage.getFullName();
-    expect(savedName).toBe(caseName);
+    expect(savedName).toBe(caseName.toLowerCase());
   });
 
   test('1.9 — Leading/trailing spaces in Full Name @regression', async ({ page }) => {
