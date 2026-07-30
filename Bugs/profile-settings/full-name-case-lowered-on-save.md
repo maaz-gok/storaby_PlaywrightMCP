@@ -1,7 +1,7 @@
 # Full Name is lowercased on save
 
 **Severity:** Medium
-**Status:** Open
+**Status:** Resolved — verified fixed 2026-07-30. Saving "Administrator" now correctly persists as "Administrator" (confirmed via Playwright against staging). Test 1.8 assertion was previously inverted to match the buggy behavior; corrected back to asserting case is preserved.
 
 ## Summary
 

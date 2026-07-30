@@ -74,18 +74,43 @@ test.describe('Admin Settings — Profile Settings', () => {
     const settingsPage = new SettingsPage(page);
     await settingsPage.goto();
 
+    const originalName = await settingsPage.getFullName();
+
+    // If the account is already at validName (the shared baseline), make an
+    // intermediate change first so the Save button actually has a diff to enable.
+    if (originalName === settings.validName) {
+      await settingsPage.fillFullName('Temp Name');
+      await expect(settingsPage.saveChangesBtn).toBeEnabled();
+      await settingsPage.saveProfile();
+      await expect(await settingsPage.getSuccessMessage()).toBeVisible({ timeout: 10000 });
+      await settingsPage.goto();
+    }
+
     await settingsPage.fillFullName(settings.validName);
     await expect(settingsPage.saveChangesBtn).toBeEnabled();
     await settingsPage.saveProfile();
 
     const successMsg = await settingsPage.getSuccessMessage();
     await expect(successMsg).toBeVisible({ timeout: 10000 });
+
+    // Restore the original name if it differed from validName, so this test
+    // doesn't leave the shared staging account mutated for other tests/runs.
+    if (originalName !== settings.validName) {
+      await settingsPage.goto();
+      await settingsPage.fillFullName(originalName);
+      if (await settingsPage.saveChangesBtn.isEnabled()) {
+        await settingsPage.saveProfile();
+        await expect(await settingsPage.getSuccessMessage()).toBeVisible({ timeout: 10000 });
+      }
+    }
   });
 
   test('1.8 — Full Name preserves case after save @regression', async ({ page }) => {
     await loginAndGoToSettings(page);
     const settingsPage = new SettingsPage(page);
     await settingsPage.goto();
+
+    const originalName = await settingsPage.getFullName();
 
     const caseName = 'Administrator';
     await settingsPage.fillFullName(caseName);
@@ -97,7 +122,15 @@ test.describe('Admin Settings — Profile Settings', () => {
 
     await settingsPage.goto();
     const savedName = await settingsPage.getFullName();
-    expect(savedName).toBe(caseName.toLowerCase());
+    expect(savedName).toBe(caseName);
+
+    // Restore the original name so this test doesn't leave the shared staging
+    // account mutated for other tests/runs that assert against a fixed baseline.
+    await settingsPage.fillFullName(originalName);
+    if (await settingsPage.saveChangesBtn.isEnabled()) {
+      await settingsPage.saveProfile();
+      await expect(await settingsPage.getSuccessMessage()).toBeVisible({ timeout: 10000 });
+    }
   });
 
   test('1.9 — Leading/trailing spaces in Full Name @regression', async ({ page }) => {

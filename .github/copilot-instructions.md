@@ -22,11 +22,11 @@ Follow these rules for every code change.
 
 ## Coding conventions
 
-- Import test from `src/fixtures/base.ts`, never from `@playwright/test` directly
+- Import test from `src/fixtures/base.js`, never from `@playwright/test` directly
 - Use `test.describe` per feature area
 - One logical assertion group per test
 - Use `test.step` for readability when a flow has more than 3 actions
-- File names: kebab-case (`add-to-cart.spec.ts`)
+- File names: kebab-case (`add-to-cart.spec.js`)
 
 ## Locator priority (STRICT — do not deviate)
 
@@ -64,7 +64,7 @@ Follow these rules for every code change.
 - Do not skip or comment out failing tests to make CI green
 - Do not use `page.evaluate` unless there is no MCP tool alternative
 - Do not commit `.env`, credentials, `storage-state.json`, or auth tokens
-- Do not modify `playwright.config.ts` without asking
+- Do not modify `playwright.config.js` without asking
 - Do not add new npm dependencies without asking
 - Do not use `page.pause()` in committed code
 

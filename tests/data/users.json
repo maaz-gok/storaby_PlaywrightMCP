@@ -2,7 +2,7 @@
   "admin": {
     "email": "usman+admin@geeksofkolachi.com",
     "password": "Admin@123",
-    "name": "updated admin name",
+    "name": "Updated Admin Name",
     "newPassword": "NewPass789!"
   },
   "wrongEmail": {
