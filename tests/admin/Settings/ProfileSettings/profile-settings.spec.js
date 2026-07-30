@@ -203,6 +203,18 @@ test.describe('Admin Settings — Profile Settings', () => {
     const settingsPage = new SettingsPage(page);
     await settingsPage.goto();
 
+    const originalName = await settingsPage.getFullName();
+
+    // If the account is already at validName (the shared baseline), make an
+    // intermediate change first so the Save button actually has a diff to enable.
+    if (originalName === settings.validName) {
+      await settingsPage.fillFullName('Temp Name');
+      await expect(settingsPage.saveChangesBtn).toBeEnabled();
+      await settingsPage.saveProfile();
+      await expect(await settingsPage.getSuccessMessage()).toBeVisible({ timeout: 10000 });
+      await settingsPage.goto();
+    }
+
     await settingsPage.fillFullName(settings.validName);
     await expect(settingsPage.saveChangesBtn).toBeEnabled();
 
@@ -215,6 +227,17 @@ test.describe('Admin Settings — Profile Settings', () => {
 
     await page.waitForTimeout(2000);
     expect(requests.length).toBeLessThanOrEqual(2);
+
+    // Restore the original name if it differed from validName, so this test
+    // doesn't leave the shared staging account mutated for other tests/runs.
+    if (originalName !== settings.validName) {
+      await settingsPage.goto();
+      await settingsPage.fillFullName(originalName);
+      if (await settingsPage.saveChangesBtn.isEnabled()) {
+        await settingsPage.saveProfile();
+        await expect(await settingsPage.getSuccessMessage()).toBeVisible({ timeout: 10000 });
+      }
+    }
   });
 
   test('1.15 — Refresh page and verify saved values persist @critical @smoke', async ({ page }) => {

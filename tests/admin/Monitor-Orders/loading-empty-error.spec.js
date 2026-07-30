@@ -67,9 +67,27 @@ test.describe('Order Management — loading, empty and error states', () => {
   test('9.2 — Filter returns no results @regression', async ({ page }) => {
     const orders = new OrdersPage(page);
 
+    // Staging data drifts over time, so "Shipped" is no longer guaranteed to be
+    // empty. Mock the API response for the filtered request (same pattern as 9.3)
+    // so this test verifies the empty-state UI deterministically, not live data.
+    await test.step('Mock empty response for the filtered status', async () => {
+      await page.route('**/api.staging.storaby.com/admin/orders**', async route => {
+        await route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          // totalPages must be 1 (not 0) — matches the real API's shape for a
+          // genuine zero-result response; totalPages: 0 breaks pagination rendering.
+          body: JSON.stringify({
+            data: { items: [], total: 0, page: 1, limit: 10, totalPages: 1 },
+            status: 200,
+            message: 'Orders retrieved successfully.',
+          }),
+        });
+      });
+    });
+
     await test.step('Filter by status with no orders', async () => {
       await orders.selectStatusFilter('Shipped');
-      await page.waitForTimeout(2000);
     });
 
     await test.step('Verify empty state', async () => {
