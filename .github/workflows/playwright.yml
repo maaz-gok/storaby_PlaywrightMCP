@@ -2,8 +2,16 @@ name: Playwright Tests
 on:
   push:
     branches: [ main, master ]
+    paths-ignore:
+      - '**.md'
+      - 'ManualTestCases/**'
+      - 'Bugs/**'
   pull_request:
     branches: [ main, master ]
+    paths-ignore:
+      - '**.md'
+      - 'ManualTestCases/**'
+      - 'Bugs/**'
 
 permissions:
   contents: read
