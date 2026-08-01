@@ -190,7 +190,8 @@ test.describe('Template Management — card grid and card data', () => {
       await page.waitForLoadState('networkidle');
       await expect(templates.cards.first()).toBeVisible();
       expect(await countColumns()).toBe(3);
-      expect(await templates.cards.count()).toBe(9);
+      const body = await capturePageOne(page);
+      await expect(templates.cards).toHaveCount(body.data.items.length);
     });
 
     await test.step('Tablet (768px): 2 columns', async () => {

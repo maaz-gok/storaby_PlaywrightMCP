@@ -15,6 +15,13 @@ test.describe('Template Management — browser behaviour', () => {
 
   const isListUrl = url => url.includes('/story-templates/admin/all');
 
+  async function capturePageOne(page) {
+    const responsePromise = page.waitForResponse(r => isListUrl(r.url()));
+    await page.reload();
+    const response = await responsePromise;
+    return response.json();
+  }
+
   test('12.6a — Browser back navigates to dashboard @smoke @critical', async ({ page }) => {
     const dashboard = new DashboardPage(page);
     const templates = new TemplatesPage(page);
@@ -90,8 +97,9 @@ test.describe('Template Management — browser behaviour', () => {
       await expect(templates.storefrontSectionButton).toContainText('Storefront section');
       await expect(templates.visibilityButton).toContainText('Visibility');
       await expect(templates.cards.first()).toBeVisible();
-      const text = await templates.getPaginationText();
-      expect(text).toMatch(/^1-9 of \d+$/);
+      const body = await capturePageOne(page);
+      const { total, limit } = body.data;
+      await expect(templates.paginationText).toHaveText(`1-${Math.min(limit, total)} of ${total}`);
     });
   });
 

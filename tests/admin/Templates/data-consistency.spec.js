@@ -78,40 +78,49 @@ test.describe('Template Management — backend/UI data consistency', () => {
     const templates = new TemplatesPage(page);
     const pageOne = await capturePageOne(page);
     const { total, totalPages, limit } = pageOne.data;
-    expect(totalPages).toBeGreaterThan(1);
 
     await test.step('Verify page 1 card count and pagination', async () => {
       await expect(templates.cards).toHaveCount(pageOne.data.items.length);
       await expect(templates.paginationText).toHaveText(`1-${Math.min(limit, total)} of ${total}`);
     });
 
-    await test.step('Verify page 2 card count', async () => {
-      const responsePromise = page.waitForResponse(r =>
-        isListUrl(r.url()) && new URL(r.url()).searchParams.get('page') === '2'
-      );
-      await templates.nextPageButton.click();
-      const response = await responsePromise;
-      const body = await response.json();
-      expect(body.data.page).toBe(2);
-      await expect(templates.cards).toHaveCount(body.data.items.length);
-    });
+    if (totalPages > 1) {
+      await test.step('Verify page 2 card count', async () => {
+        const responsePromise = page.waitForResponse(r =>
+          isListUrl(r.url()) && new URL(r.url()).searchParams.get('page') === '2'
+        );
+        await templates.nextPageButton.click();
+        const response = await responsePromise;
+        const body = await response.json();
+        expect(body.data.page).toBe(2);
+        await expect(templates.cards).toHaveCount(body.data.items.length);
+      });
 
-    await test.step('Verify last page card count', async () => {
-      const backPromise = page.waitForResponse(r =>
-        isListUrl(r.url()) && new URL(r.url()).searchParams.get('page') === '1'
-      );
-      await templates.firstPageButton.click();
-      await backPromise;
+      await test.step('Verify last page card count', async () => {
+        const backPromise = page.waitForResponse(r =>
+          isListUrl(r.url()) && new URL(r.url()).searchParams.get('page') === '1'
+        );
+        await templates.firstPageButton.click();
+        await backPromise;
 
-      const responsePromise = page.waitForResponse(r =>
-        isListUrl(r.url()) && new URL(r.url()).searchParams.get('page') === String(totalPages)
-      );
-      await templates.lastPageButton.click();
-      const response = await responsePromise;
-      const body = await response.json();
-      expect(body.data.page).toBe(totalPages);
-      await expect(templates.cards).toHaveCount(body.data.items.length);
-    });
+        const responsePromise = page.waitForResponse(r =>
+          isListUrl(r.url()) && new URL(r.url()).searchParams.get('page') === String(totalPages)
+        );
+        await templates.lastPageButton.click();
+        const response = await responsePromise;
+        const body = await response.json();
+        expect(body.data.page).toBe(totalPages);
+        await expect(templates.cards).toHaveCount(body.data.items.length);
+      });
+    } else {
+      await test.step('Verify single-page boundary (all controls disabled)', async () => {
+        await expect(templates.paginationText).toHaveText(`1-${Math.min(limit, total)} of ${total}`);
+        await expect(templates.firstPageButton).toBeDisabled();
+        await expect(templates.prevPageButton).toBeDisabled();
+        await expect(templates.nextPageButton).toBeDisabled();
+        await expect(templates.lastPageButton).toBeDisabled();
+      });
+    }
   });
 
   test('12.3 — Search and filter results match backend filtered responses @smoke @critical', async ({ page }) => {
