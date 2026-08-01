@@ -204,6 +204,7 @@ test.describe('Admin Dashboard — API/UI data consistency', () => {
 
     const trendSum = trendData.data.reduce((sum, d) => sum + d.revenue, 0);
 
-    await expect(dashboard.totalRevenueValue).toHaveText(`£${Math.floor(cardRevenue / 100).toLocaleString('en-GB')}`);
+    const expectedRevenue = (cardRevenue / 100).toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    await expect(dashboard.totalRevenueValue).toHaveText(`£${expectedRevenue}`);
   });
 });

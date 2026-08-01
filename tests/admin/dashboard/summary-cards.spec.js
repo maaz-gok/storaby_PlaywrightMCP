@@ -25,7 +25,7 @@ async function callSummaryApi(page) {
 
 function formatRevenue(cents) {
   const pounds = cents / 100;
-  return `£${Math.floor(pounds).toLocaleString('en-GB')}`;
+  return `£${pounds.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
 }
 
 test.describe('Admin Dashboard — summary cards', () => {
