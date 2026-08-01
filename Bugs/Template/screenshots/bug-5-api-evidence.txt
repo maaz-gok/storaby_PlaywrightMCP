@@ -1,0 +1,19 @@
+GET /story-templates/admin/all?page=1&limit=9&search=Musi (status 200)
+
+Two items returned, each with a different ageVersion but the SAME ageBandLabel:
+
+Item 1:
+  _id:        6a5dfdbfcae4094b11a69971
+  name:       Music Band
+  ageVersion: B_4_8   (frontend maps B_4_8 -> "Age 4-8" tag; Age Group filter option "Ages 4–8")
+  ageBandLabel: "Ages 3–7"   <-- mismatch
+
+Item 2:
+  _id:        6a5dfdbfcae4094b11a69970
+  name:       Music Band
+  ageVersion: A_2_4   (frontend maps A_2_4 -> "Age 2-4" tag; Age Group filter option "Ages 2–4")
+  ageBandLabel: "Ages 3–7"   <-- same label as B_4_8, matches no filter option
+
+ageBandLabel is present in the list response, but:
+  - Two different ageVersion values (A_2_4 and B_4_8) share the same label "Ages 3–7".
+  - "Ages 3–7" is not one of the Age Group filter options ("Ages 2–4" / "Ages 4–8").

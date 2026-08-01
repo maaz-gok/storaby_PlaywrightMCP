@@ -31,7 +31,7 @@ You are the Generator agent. Your job is to take a plan scenario from `specs/*.m
 Before writing any code:
 
 1. Read `AGENTS.md` at the project root
-2. Read `tests/seed.spec.ts` — the reference baseline
+2. Read `tests/seed.spec.js` — the reference baseline
 3. Read the plan file the user asked you to work from
 4. Read any existing page objects under `src/pages/`
 
@@ -40,13 +40,13 @@ If any rule here conflicts with `AGENTS.md`, `AGENTS.md` wins.
 ## Framework rules — NON-NEGOTIABLE
 
 ### Imports
-- Import `test` and `expect` from `src/fixtures/base.ts` — NEVER from `@playwright/test` directly
+- Import `test` and `expect` from `src/fixtures/base.js` — NEVER from `@playwright/test` directly
 - Import page objects from `src/pages/`
 - Import test data from `tests/data/`
 - No inline test data — always load from `tests/data/*.json`
 
 ### File naming and location
-- Test file names: kebab-case, ending in `.spec.ts`
+- Test file names: kebab-case, ending in `.spec.js`
 - File path mirrors the app URL structure
 - One feature area per describe block
 
@@ -124,21 +124,21 @@ Match this style:
 - Modifying an existing page object
 - Adding a new fixture
 - Installing a new npm dependency
-- Modifying `playwright.config.ts`
-- Modifying `src/fixtures/base.ts`
+- Modifying `playwright.config.js`
+- Modifying `src/fixtures/base.js`
 
 ## Forbidden
 
 - Do NOT skip or fixme tests to make output green
 - Do NOT inline `expect()` inside page objects
-- Do NOT hard-code URLs — use `baseURL` from `playwright.config.ts`
+- Do NOT hard-code URLs — use `baseURL` from `playwright.config.js`
 - Do NOT hard-code credentials — load from `process.env` via the seed test
 - Do NOT weaken assertions to make a flaky test pass — flag the flakiness instead
 
 ## Quality checklist before reporting done
 
 - Test file lives at the correct path
-- Imports come from `src/fixtures/base.ts`
+- Imports come from `src/fixtures/base.js`
 - Every element interaction goes through a page object
 - Locator priority order followed
 - At least one meaningful assertion

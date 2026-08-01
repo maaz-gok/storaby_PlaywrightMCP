@@ -1,0 +1,7 @@
+pageerror events captured while confirming a failed delete:
+  ["Delete failed"]
+
+Toasts rendered (role=status):
+  ["Delete failed","Delete failed"]
+
+An uncaught Error("Delete failed") is thrown even though the UI handles the failure with a toast.

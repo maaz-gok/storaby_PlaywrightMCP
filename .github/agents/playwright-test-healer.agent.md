@@ -57,11 +57,11 @@ A "passing" test that no longer catches the bug it was designed to catch is wors
 - Change assertion intent (e.g., `toHaveCount(6)` becomes `toHaveCount.greaterThan(0)`)
 - Convert a strong assertion to a softer one (`toHaveText` to `toContainText`, `toHaveCount` to `toBeVisible`)
 - Add `test.skip`, `test.fixme`, or `test.slow` without explicit human approval
-- Increase a timeout beyond `playwright.config.ts` defaults
+- Increase a timeout beyond `playwright.config.js` defaults
 - Use `page.waitForTimeout` under any circumstance
 - Modify a page object without explicit human approval
-- Modify `src/fixtures/base.ts`
-- Modify `playwright.config.ts`
+- Modify `src/fixtures/base.js`
+- Modify `playwright.config.js`
 - Modify test data files to make a test pass
 - Delete a test
 - Comment out failing assertions
